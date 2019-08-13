@@ -1,0 +1,109 @@
+ World Continents, Countries and Cities Database Script
+ 
+ USE World
+CREATE TABLE dbo.tblCities
+(
+CityId int,
+CityName varchar(25),
+CountryId int,
+);
+
+USE World
+CREATE TABLE dbo.tblContinents
+(
+ContinentId int,
+ContinentName varchar(25),
+);
+
+USE World
+CREATE TABLE dbo.tblCountries
+(
+CountryId int,
+CountryName varchar(25),
+ContinentId int,
+);
+
+USE World
+
+INSERT INTO dbo.tblContinents
+  (ContinentId, ContinentName)
+VALUES
+  (1, 'Africa'),
+  (2, 'Asia'),
+  (3, 'Australia'),
+  (4, 'Europe'),
+  (5, 'North America'),
+  (6, 'South America'),
+  (7, 'India', 2),
+  (8, 'Japan', 2),
+  (9, 'Malaysia', 2),
+  (10, 'Australia', 3),
+  (11, 'United Kingdom', 4),
+  (12, 'France', 4),
+  (13, 'Germany', 4),
+  (14, 'Canada', 5),
+  (15, 'United States of America', 5),
+  (16, 'Argentina', 6),
+  (17, 'Brazil', 6);
+  
+
+USE World
+
+INSERT INTO dbo.tblCities
+  (CityId, CityName, CountryId)
+VALUES
+  (1, 'Pretoria', 1),
+  (2, 'Cape Town', 1),
+  (3, 'Harare', 2),
+  (4, 'Bulawayo', 2),
+  (5, 'Nairobi', 3),
+  (6, 'Dar le Saalam', 4),
+  (7, 'Lagos', 5),
+  (8, 'Abuja', 5),
+  (9, 'Livingstone', 6),
+  (10, 'Lusaka', 6),
+  (11, 'Mumbai', 7),
+  (12, 'Tokyo', 8),
+  (13, 'Bangalore', 9),
+  (14, 'Sydney', 10),
+  (15, 'Peth', 10),
+  (16, 'Manchester', 11),
+  (17, 'Liverpool', 11),
+  (18, 'Paris', 12),
+  (19, 'Frankfurt', 13),
+  (20, 'Toronto', 14),
+  (21, 'Washington', 15),
+  (22, 'Los Angeles', 15),
+  (23, 'Argente', 16),
+  (24, 'Rio De Jeniro', 17);
+  
+  
+STORED PROCEDURES STORED PROCEDURES
+
+//Get Continents Stored Procedure
+Create Procedure spGetContinents
+as 
+Begin
+	Select ContinentId, ContinentName from tblContinents
+End
+
+
+//GetCountriesByContinentId By Passing a Parameter ContinentId
+Create Procedure spGetCountriesByContinentId 
+@ContinentId int
+as 
+Begin
+	Select CountryId, CountryName from tblCountries
+	where ContinentId = @ContinentId
+End
+
+
+//GetCitiesByCountryId By Passing a Parameter CountryId
+Create Procedure spGetCitiesByCountryId 
+@CountryId int
+as 
+Begin
+	Select CityId, CityName from tblCities
+	where CountryId = @CountryId
+End
+
