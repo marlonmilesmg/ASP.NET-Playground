@@ -14,6 +14,7 @@ namespace WebApplicationAug
 
         }
 
+        //ListBox with Multiple selection
         protected void Button1_Click(object sender, EventArgs e)
         {
             foreach(ListItem li in ListBox1.Items)
